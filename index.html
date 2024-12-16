@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天地 Production</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 스타일 초기화 */
+        body, h1, h2, p, a {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow: hidden; /* 기본 스크롤 방지 */
+        }
+
+        /* 헤더 */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .logo {
+            position: absolute;
+            left: 20px;
+            font-size: 1.8rem;
+            color: #f39c12;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 1rem;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #f39c12;
+            color: #000;
+        }
+
+        /* 컨테이너 */
+        .container {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 70px);
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #111;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .container.active {
+            display: flex;
+        }
+
+        /* 메인 섹션 */
+        .main-section {
+            text-align: center;
+            background: linear-gradient(45deg, #000, #333);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-section h1 {
+            font-size: 5rem;
+            color: #f39c12;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .main-section p {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            max-width: 600px;
+            color: #ddd;
+        }
+
+        /* 상세 페이지 */
+        .content {
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        /* SERVICE 섹션 */
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-auto-rows: minmax(200px, auto); /* 높이를 자동 조정 */
+            gap: 20px;
+            width: 100%;
+        }
+
+        .service-box {
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-box h3 {
+            margin: 15px 0;
+            font-size: 1.5rem;
+            color: #f39c12;
+        }
+
+        .service-box p {
+            font-size: 1rem;
+            padding: 10px 15px;
+            color: #ddd;
+        }
+
+        /* 푸터 */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #000;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 디자인 */
+        @media screen and (max-width: 768px) {
+            .service-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-section h1 {
+                font-size: 3rem;
+            }
+
+            .content h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="logo">天地 Production</div>
+        <nav>
+            <a href="#" data-target="main">MAIN</a>
+            <a href="#" data-target="about">ABOUT</a>
+            <a href="#" data-target="services">SERVICE</a>
+            <a href="#" data-target="portfolio">PORTFOLIO</a>
+            <a href="#" data-target="contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- 메인 섹션 -->
+    <div id="main" class="container active">
+        <div class="main-section">
+            <h1>天地 Production</h1>
+            <p>
+                We bring your vision to life through film, drama, and commercials with exceptional quality and creativity.
+            </p>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="about" class="container">
+        <div class="content">
+            <h2>ABOUT</h2>
+            <p>
+                영화, 드라마, 광고 등 다양한 콘텐츠 제작 분야에서 최상의 퀄리티와 창의적인 비전을 제공하는 
+                天地 Production은 촬영 전문 회사로서, 고객의 아이디어를 생동감 넘치는 영상으로 구현하는 데 최선을 다하고 있습니다.
+            </p>
+        </div>
+    </div>
+
+    <!-- SERVICE -->
+    <div id="services" class="container">
+        <div class="content">
+            <h2>SERVICE</h2>
+            <div class="service-container">
+                <div class="service-box">
+                    <img src="https://via.placeholder.com/300x200?text=Film+Production" alt="영화 촬영">
+                    <h3>영화 촬영</h3>
+                    <p>감각적이고 깊이 있는 영상미를 통해 강렬한 영화적 경험을 제공합니다.</p>
+                </div>
+                <div class="service-box">
+                    <img src="https://via.placeholder.com/300x200?text=Drama+Production" alt="드라마 촬영">
+                    <h3>드라마 촬영</h3>
+                    <p>캐릭터와 스토리의 감성을 섬세히 담아낸 장면을 제작합니다.</p>
+                </div>
+                <div class="service-box">
+                    <img src="https://via.placeholder.com/300x200?text=Commercials" alt="광고 촬영">
+                    <h3>광고 촬영</h3>
+                    <p>브랜드 메시지를 효과적으로 전달할 수 있는 임팩트 있는 영상을 제작합니다.</p>
+                </div>
+                <div class="service-box">
+                    <img src="https://via.placeholder.com/300x200?text=Planning+and+Support" alt="기획 및 제작 지원">
+                    <h3>기획 및 제작 지원</h3>
+                    <p>촬영 전 기획부터 후반 작업까지 원스톱 서비스를 제공합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div id="portfolio" class="container">
+        <div class="content">
+            <h2>PORTFOLIO</h2>
+            <p>현재 준비중입니다.</p>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact" class="container">
+        <div class="content">
+            <h2>CONTACT</h2>
+            <p><strong>CEO:</strong> Michael Kim</p>
+            <p><strong>TEL:</strong> 070-8027-8412</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 天地 Production. All rights reserved.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+            const containers = document.querySelectorAll('.container');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.dataset.target;
+
+                    // 모든 컨테이너 숨기기
+                    containers.forEach(container => container.classList.remove('active'));
+
+                    // 선택된 컨테이너 활성화
+                    const targetContainer = document.getElementById(targetId);
+                    if (targetContainer) {
+                        targetContainer.classList.add('active');
+                    } else {
+                        console.error(`Container with id "${targetId}" not found.`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
